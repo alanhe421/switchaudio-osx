@@ -792,6 +792,7 @@ void showAllDevices(ASDeviceType typeRequested, ASOutputType outputRequested) {
 
     AudioObjectGetPropertyData(kAudioObjectSystemObject, &propertyAddress, 0, NULL, &propertySize, dev_array);
 
+if (typeRequested == kAudioTypeOutput || typeRequested == kAudioTypeAll) {
 
     struct BrowseContext browseContext = {typeRequested, outputRequested};
 
@@ -807,7 +808,7 @@ void showAllDevices(ASDeviceType typeRequested, ASOutputType outputRequested) {
     DNSServiceProcessResult(serviceRef);
     DNSServiceRefDeallocate(serviceRef);
 
-
+}
     for (int i = 0; i < numberOfDevices; ++i) {
         switch (typeRequested) {
             case kAudioTypeInput:
